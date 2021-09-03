@@ -1,0 +1,17 @@
+You'll need to create a .env with:
+MYSQL_ROOT_PASSWORD=password_here
+MYSQL_USER=wordpress 
+MYSQL_PASSWORD=password_here 
+
+You'll also want to add a crontab for root as follows:
+sudo crontab -e
+15 12 * * * /home/ubuntu/wordpress/ssl_renew.sh >> /var/log/cron.log 2>&1
+
+In terms of docker:
+sudo apt install docker-engine docker-compose.
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -a -G docker <current_user>
+docker-compose up
+
+See https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose for the guide used for this.
